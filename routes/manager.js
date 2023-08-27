@@ -25,7 +25,7 @@ managerRoutes.post('/', authorize(["manager"]), async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).send({ message: 'Manager created successfully' });
+    res.status(201).send({ message: 'User created successfully' });
   } catch (error) {
     console.log('error:', error)
     res.status(500).send({ message: 'Server error' });
