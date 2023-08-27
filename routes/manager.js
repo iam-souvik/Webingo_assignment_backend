@@ -5,9 +5,9 @@ const User = require('../models/User');
 const { authorize } = require('../middleware/authorize.middleware');
 
 
-managerRoutes.use(authorize(['admin']))
 
-managerRoutes.post('/',  async (req, res) => {
+
+managerRoutes.post('/', authorize(["manager"]), async (req, res) => {
   const { name, image, dob, email, role, phoneNumber, password } = req.body;
 
   try {
@@ -32,6 +32,8 @@ managerRoutes.post('/',  async (req, res) => {
   }
 });
 
+
+managerRoutes.use(authorize(['admin']))
 managerRoutes.get('/', async (req, res) => {
   try {
     const users = await User.find({ role: 'manager' });
